@@ -100,6 +100,7 @@ function onInit({ exc, id, container, props, ctx }) {
         container.export = excel.download
         container.fullscreen = excel.fullscreen
         container.showChanges = () => {
+            container.hideChanges
             let changes = [...past]
             if (present) changes.push(present)
             let cell, O = {}
@@ -125,12 +126,12 @@ function onInit({ exc, id, container, props, ctx }) {
             })
         }
         container.hideChanges = () => {
-            $$('.zp136changed').forEach(x => {
+            $$("#" + id + " .zp136changed").forEach(x => {
                 x.classList.remove("zp136changed")
                 x.title = ""
             })
         }
-        container.saveChangesToDB = () => {
+        container.saveChangesToDB = exp => {
             if (!model) return
             let changes = [...past]
             if (present) changes.push(present)
@@ -152,8 +153,13 @@ function onInit({ exc, id, container, props, ctx }) {
                     O[_id] = o
                 }
             })
+            let str = ""
+            let R = []
             Object.keys(O).forEach(_id => {
-                exc('$' + model + '.modify("' + _id + '", U)', { U: O[_id] })
+                str += '$' + model + '.modify("' + _id + '", O["' + _id + '"]); R.push($r); '
+            })
+            exc(str, { O, R }, () => {
+                if (typeof exp === "string") exc(exp, { ...ctx, $R: R })
             })
             excel.setData() // null will reload what is in memory
             past = []
