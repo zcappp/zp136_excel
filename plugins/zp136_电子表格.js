@@ -1,7 +1,7 @@
 const AZ = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 function onInit({ exc, id, container, props, ctx }) {
-    exc('load(["//z.zcwebs.cn/vendor/jspreadsheet/v4/jsuites.css", "//z.zcwebs.cn/vendor/jspreadsheet/v4/jexcel.css", "//z.zcwebs.cn/vendor/jspreadsheet/v4/jexcel.js", "//z.zcwebs.cn/vendor/jspreadsheet/v4/jsuites.js"])', null, () => {
+    exc('load(["//z.zccdn.cn/vendor/jspreadsheet/v4/jsuites.css", "//z.zccdn.cn/vendor/jspreadsheet/v4/jexcel.css", "//z.zccdn.cn/vendor/jspreadsheet/v4/jexcel.js", "//z.zccdn.cn/vendor/jspreadsheet/v4/jsuites.js"])', null, () => {
         let model, present
         let past = []
         let future = []
