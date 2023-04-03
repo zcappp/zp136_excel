@@ -1,6 +1,6 @@
 const AZ = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
-function onInit({ exc, id, container, props, ctx }) {
+function init({ exc, id, container, props, ctx }) {
     exc('load(["//z.zccdn.cn/vendor/jspreadsheet/v4/jsuites.css", "//z.zccdn.cn/vendor/jspreadsheet/v4/jexcel.css", "//z.zccdn.cn/vendor/jspreadsheet/v4/jexcel.js", "//z.zccdn.cn/vendor/jspreadsheet/v4/jsuites.js"])', null, () => {
         let model, present
         let past = []
@@ -224,7 +224,7 @@ $plugin({
         type: "exp",
         label: "onChange"
     }],
-    onInit,
+    init,
     css
 })
 
