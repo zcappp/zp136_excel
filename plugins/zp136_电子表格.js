@@ -1,6 +1,7 @@
 const AZ = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 function init({ exc, id, container, props, ctx }) {
+    //exc('load(["https://z.zccdn.cn/vendor/jspreadsheet/jsuites_v5.css", "https://z.zccdn.cn/vendor/jspreadsheet/jspreadsheet_v10.css", "https://z.zccdn.cn/vendor/jspreadsheet/jspreadsheet_v10.js", "https://z.zccdn.cn/vendor/jspreadsheet/jsuites_v5.js"])', null, () => {
     exc('load(["https://z.zccdn.cn/vendor/jspreadsheet/v4/jsuites.css", "//z.zccdn.cn/vendor/jspreadsheet/v4/jexcel.css", "//z.zccdn.cn/vendor/jspreadsheet/v4/jexcel.js", "//z.zccdn.cn/vendor/jspreadsheet/v4/jsuites.js"])', null, () => {
         let model, present
         let past = []
@@ -85,7 +86,7 @@ function init({ exc, id, container, props, ctx }) {
                 present = arr.filter(a => a.newValue !== undefined)
                 present.forEach(o => o._id = excel.getMeta("A" + (parseInt(o.y) + 1))._id)
                 future = []
-                if (props.onChange) exc(props.onChange, { ...ctx, $x: present }, () => exc("render()"))
+                if (props.change) exc(props.change, { ...ctx, $x: present }, () => exc("render()"))
             },
             onundo: (a, b, c) => {
                 if (present) future = [present, ...future]
@@ -220,9 +221,9 @@ $plugin({
         type: "switch",
         label: "可过滤"
     }, {
-        prop: "onChange",
+        prop: "change",
         type: "exp",
-        label: "onChange"
+        label: "change"
     }],
     init,
     css
